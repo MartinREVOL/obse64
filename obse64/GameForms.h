@@ -41,6 +41,36 @@ public:
 
 static_assert(sizeof(BaseFormComponent) == 0x08);
 
+// 28
+class TESActorBaseData : public BaseFormComponent
+{
+public:
+	enum
+	{
+		kModified_ActorBaseFlags = 0x00000010,
+		kFlag_IsEssential = 0x00000002,
+	};
+
+	u32	flags;			// 08
+	u16	baseSpellPts;	// 0C
+	u16	fatigue;		// 0E
+	u16	barterGold;		// 10
+	s16	level;			// 12
+	u16	minLevel;		// 14
+	u16	maxLevel;		// 16
+	u32	unk18;			// 18
+	void * factionList;	// 20
+
+	bool IsEssential() const
+	{
+		return (flags & kFlag_IsEssential) != 0;
+	}
+
+	void SetEssential(bool essential);
+};
+
+static_assert(sizeof(TESActorBaseData) == 0x28);
+
 // 18
 class TESFullName : public BaseFormComponent
 {

@@ -5,6 +5,18 @@
 
 RelocAddr <_LookupFormByID> LookupFormByID(0x066114B0);
 
+void TESActorBaseData::SetEssential(bool essential)
+{
+	if(essential)
+		flags |= kFlag_IsEssential;
+	else
+		flags &= ~kFlag_IsEssential;
+
+	TESForm * baseForm = DYNAMIC_CAST(this, TESActorBaseData, TESForm);
+	if(baseForm)
+		baseForm->MarkAsModified(kModified_ActorBaseFlags);
+}
+
 enum
 {
 	kSlot_Head = 0x1 << TESBipedModelForm::kPart_Head,

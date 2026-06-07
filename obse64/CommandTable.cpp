@@ -56,6 +56,17 @@ static CommandInfo kTestArgCommand =
 	HANDLER(Cmd_TestArgs_Execute)
 };
 
+static CommandInfo kPaddingCommand =
+{
+	"", "",
+	0,
+	"empty padding command",
+	0,
+	0, nullptr,
+
+	HANDLER(Cmd_Test_Execute)
+};
+
 void ImportConsoleCommand(const char * name)
 {
 	for(u32 i = 0; i < kScript_NumConsoleCommands; i++)
@@ -182,4 +193,9 @@ void AddScriptCommands()
 	ImportConsoleCommand("WaterReflectionColor");
 	ImportConsoleCommand("SetGamma");
 	ImportConsoleCommand("SetHDRParam");
+	// Match xOBSE opcodes: IsRefEssential = 0x1477, SetRefEssential = 0x1478.
+	for(u32 i = 0; i < 41; i++)
+		AddScriptCommand(kPaddingCommand);
+	ADD(IsRefEssential);
+	ADD(SetRefEssential);
 }
