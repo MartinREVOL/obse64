@@ -3,6 +3,7 @@
 #include "obse64_common/BranchTrampoline.h"
 #include "GameData.h"
 #include "PluginManager.h"
+#include "ProtectedRefRegistry.h"
 
 RelocAddr <uintptr_t> LoadingComplete_Hook(0x065D2070 + 0x9D2);
 
@@ -11,6 +12,7 @@ static void LoadingComplete()
 	CALL_MEMBER_FN(TESDataHandler::GetSingleton(), UnkInit)();
 
 	// before triggering starting cell
+	ProtectedRefRegistry::Get().Clear();
 	g_pluginManager.dispatchMessage(0, OBSEMessagingInterface::kMessage_DataLoaded, nullptr, 0, nullptr);
 }
 

@@ -109,6 +109,8 @@ source_group(
 		Hooks_Gameplay.h
 		Hooks_Data.cpp
 		Hooks_Data.h
+		Hooks_RefProtection.cpp
+		Hooks_RefProtection.h
 )
 
 source_group(
@@ -130,6 +132,7 @@ source_group(
 source_group(
 	${PROJECT_NAME}/commands
 	FILES
+		Commands_Actor.cpp
 		Commands_Inventory.cpp
 		Commands_Input.cpp
 		Commands_Console.cpp
